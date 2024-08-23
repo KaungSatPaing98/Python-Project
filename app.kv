@@ -1,0 +1,66 @@
+# Create your Kivy layout in the kv language here
+BoxLayout:
+    orientation: 'horizontal'
+
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint_x: 0.3
+        Label:
+            text: "Sort by:"
+        Spinner:
+            id: sort_method
+            text: app.current_mode
+            values: app.sorting_modes
+            on_text: app.sort_places(self.text)
+        Label:
+            text: 'Add New Place...'
+        Label:
+            text: 'Name:'
+        TextInput:
+            id: input_name
+            value: ''
+            multiline: False
+            write_tab: False
+        Label:
+            text: 'Country:'
+        TextInput:
+            id: input_country
+            value: ''
+            multiline: False
+            write_tab: False
+        Label:
+            text: 'Priority:'
+        TextInput:
+            id: input_priority
+            text: ''
+            multiline: False
+            write_tab: False
+        Button:
+            text: 'Add Place'
+            size_hint_y: 1.5
+            on_release: app.add_new_places(input_name.text, input_country.text, input_priority.text)
+        Button:
+            text: 'Clear'
+            on_press: app.clear_data()
+
+
+    BoxLayout:
+        orientation:'vertical'
+        Label:
+            size_hint_y: 0.1
+            text: app.status_label
+        BoxLayout:
+            orientation: 'vertical'
+            id: place_display
+            background_color: (255,255,255,1)
+
+        Label:
+            size_hint_y: 0.1
+            text: app.program_state
+
+
+
+
+
+
+
